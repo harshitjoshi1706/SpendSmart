@@ -19,8 +19,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "PennyWise Expense Tracker",
-        short_name: "PennyWise",
+        name: "SpendSmart Expense Tracker",
+        short_name: "SpendSmart",
         description: "Track expenses and manage personal finance.",
         theme_color: "#ffffff",
         background_color: "#ffffff",
