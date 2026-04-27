@@ -5,7 +5,7 @@ import {
 } from "@/types/analytics.types";
 import {
   Calendar,
-  DollarSign,
+  IndianRupee,
   Target,
   TrendingDown,
   TrendingUp,
@@ -24,7 +24,7 @@ interface Insight {
   icon:
     | typeof TrendingUp
     | typeof TrendingDown
-    | typeof DollarSign
+    | typeof IndianRupee
     | typeof Calendar
     | typeof Target;
 }
@@ -78,7 +78,7 @@ export default function InsightsCard({
           2,
         )}`,
         type: "neutral",
-        icon: DollarSign,
+        icon: IndianRupee,
       });
     }
 

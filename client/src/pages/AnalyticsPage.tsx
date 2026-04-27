@@ -12,7 +12,7 @@ import { useAnalyticsStore } from "@/store/analyticsStore";
 import { useExpenseStore } from "@/store/expenseStore";
 import {
   BarChart,
-  DollarSign,
+  IndianRupee,
   Package,
   TrendingDown,
   TrendingUp,
@@ -166,7 +166,7 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {dashboardStats && (
           <SummaryCard
-            icon={DollarSign}
+            icon={IndianRupee}
             label="Total Analyzed"
             // value={`$${dashboardStats.totalExpenses.toFixed(2)}`}
             value={`₹${(dashboardStats.totalExpenses ?? 0).toFixed(2)}`}

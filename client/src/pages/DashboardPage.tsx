@@ -12,7 +12,7 @@ import { useNavigate } from "@tanstack/react-router";
 import {
   ArrowRight,
   Calendar,
-  DollarSign,
+  IndianRupee,
   Package,
   Plus,
   TrendingUp,
@@ -197,7 +197,7 @@ export default function DashboardPage() {
         {dashboardStats && (
           <>
             <StatsCard
-              icon={DollarSign}
+              icon={IndianRupee}
               label="Total Expenses"
               // value={`$${dashboardStats.totalExpenses.toFixed(2)}`}
               value={`₹${(dashboardStats.totalExpenses ?? 0).toFixed(2)}`}
