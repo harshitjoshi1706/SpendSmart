@@ -1,4 +1,4 @@
-import { BarChart3, DollarSign, Shield, TrendingUp } from "lucide-react";
+import { BarChart3,  Shield, TrendingUp } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
 export default function FeaturesSection() {
@@ -10,7 +10,7 @@ export default function FeaturesSection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
         <FeatureCard
-          icon={<DollarSign className="size-8 text-purple-400" />}
+          icon={<span className="text-purple-400 text-3xl font-bold">₹</span>}
           title="Track Expenses"
           description="Easily record and categorize all your expenses in one place"
         />

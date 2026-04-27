@@ -22,7 +22,7 @@ export default function AmountRangeFilter() {
           htmlFor="min-amount"
           className="text-sm font-medium text-gray-400"
         >
-          Min Amount ($)
+          Min Amount (₹)
         </label>
 
         <input
@@ -42,7 +42,7 @@ export default function AmountRangeFilter() {
           htmlFor="max-amount"
           className="text-sm font-medium text-gray-400"
         >
-          Max Amount ($)
+          Max Amount (₹)
         </label>
 
         <input

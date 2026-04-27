@@ -136,7 +136,7 @@ export default function CategoryTable({ data }: CategoryTableProps) {
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-100">
-                    ${item.total.toFixed(2)}
+                    ₹{item.total.toFixed(2)}
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-400">
@@ -157,7 +157,7 @@ export default function CategoryTable({ data }: CategoryTableProps) {
                 Total
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-bold text-gray-100">
-                ${total.toFixed(2)}
+                ₹{total.toFixed(2)}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-bold text-gray-100">
                 100%

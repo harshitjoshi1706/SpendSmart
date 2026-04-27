@@ -27,14 +27,14 @@ export default function ResultsSummary({ expenses }: ResultsSummaryProps) {
         <span className="text-sm text-gray-400">Total Amount</span>
 
         <span className="text-2xl font-bold text-purple-400">
-          ${totalAmountOfExpenses}
+          ₹{totalAmountOfExpenses}
         </span>
       </div>
 
       <div className="flex flex-col gap-1">
         <span className="text-sm text-gray-400">Average Amount</span>
         <span className="text-2xl font-bold text-gray-100">
-          ${avgAmountOfExpenses.toFixed(2)}
+          ₹{avgAmountOfExpenses.toFixed(2)}
         </span>
       </div>
     </div>

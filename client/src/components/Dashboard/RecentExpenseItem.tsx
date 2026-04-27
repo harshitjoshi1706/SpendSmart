@@ -41,7 +41,7 @@ export default function RecentExpenseItem({
       </div>
 
       <p className="text-xl font-bold text-gray-100 font-mono">
-        ${expense.amount.toFixed(2)}
+        ₹{expense.amount.toFixed(2)}
       </p>
     </div>
   );

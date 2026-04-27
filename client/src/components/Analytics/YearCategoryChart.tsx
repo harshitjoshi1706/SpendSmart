@@ -44,7 +44,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
           {config.emoji} {config.label}
         </p>
         <p className="text-purple-400 font-bold text-lg">
-          ${data.total.toFixed(2)}
+          ₹{data.total.toFixed(2)}
         </p>
         <p className="text-gray-400 text-sm">
           {data.count} expense{data.count === 1 ? "" : "s"}
@@ -122,7 +122,7 @@ export default function YearCategoryChart({
           <YAxis
             stroke="#9ca3af"
             tick={{ fill: "#9ca3af" }}
-            tickFormatter={(value) => `$${value}`}
+            tickFormatter={(value) => `₹${value}`}
           />
 
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "#1f2937" }} />
@@ -145,7 +145,7 @@ export default function YearCategoryChart({
             <LabelList
               dataKey="total"
               position="top"
-              formatter={(value) => `$${Number(value).toFixed(0)}`}
+              formatter={(value) => `₹${Number(value).toFixed(0)}`}
               fill="#e5e7eb"
               style={{ fontSize: "12px", fontWeight: "600" }}
             />

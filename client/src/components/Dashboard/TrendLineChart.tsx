@@ -50,7 +50,7 @@ const CustomToolTip = ({ active, payload }: CustomToolTipProps) => {
     return (
       <div className="bg-slate-800 border border-purple-700 rounded-sm p-3">
         <p className="text-gray-400 text-sm">{formatMonth(data.month)}</p>
-        <p className="text-purple-400 font-bold">${data.total.toFixed(2)}</p>
+        <p className="text-purple-400 font-bold">₹{data.total.toFixed(2)}</p>
         <p className="text-gray-400 text-sm">
           {data.count} expense{data.count === 1 ? "" : "s"}
         </p>
@@ -131,7 +131,7 @@ export default function TrendLineChart({ data }: TrendLineChartProps) {
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
           <XAxis dataKey="month" tickFormatter={formatMonth} stroke="#94a3b8" />
-          <YAxis tickFormatter={(value) => `$${value}`} stroke="#94a3b8" />
+          <YAxis tickFormatter={(value) => `₹${value}`} stroke="#94a3b8" />
           <Tooltip content={<CustomToolTip />} />
 
           <Line

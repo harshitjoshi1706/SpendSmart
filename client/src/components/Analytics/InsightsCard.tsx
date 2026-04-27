@@ -64,7 +64,7 @@ export default function InsightsCard({
         text: `${
           highestCategory.category.charAt(0).toUpperCase() +
           highestCategory.category.slice(1)
-        } was your biggest expense category ($${highestCategory.total.toFixed(
+        } was your biggest expense category (₹${highestCategory.total.toFixed(
           2,
         )})`,
         type: "neutral",
@@ -74,7 +74,7 @@ export default function InsightsCard({
 
     if (dashboardStats && dashboardStats.roundedAverageExpenseAmount > 0) {
       insights.push({
-        text: `Your average expense amount is $${dashboardStats.roundedAverageExpenseAmount.toFixed(
+        text: `Your average expense amount is ₹${dashboardStats.roundedAverageExpenseAmount.toFixed(
           2,
         )}`,
         type: "neutral",
@@ -95,7 +95,7 @@ export default function InsightsCard({
       });
 
       insights.push({
-        text: `You spent the most in ${monthName} over last six months ($${highestMonth.total.toFixed(
+        text: `You spent the most in ${monthName} over last six months (₹${highestMonth.total.toFixed(
           2,
         )})`,
         type: "neutral",
@@ -115,7 +115,7 @@ export default function InsightsCard({
       insights.push({
         text: `You've tracked ${
           dashboardStats.expenseCount
-        } expenses totaling $${dashboardStats.totalExpenses.toFixed(2)}`,
+        } expenses totaling ₹${dashboardStats.totalExpenses.toFixed(2)}`,
         type: "neutral",
         icon: Target,
       });

@@ -61,7 +61,7 @@ const CustomTooltip = ({
           <p className="text-gray-300 text-sm">
             {config.emoji} {config.label}
           </p>
-          <p className="text-purple-400 font-bold">${amount.toFixed(2)}</p>
+          <p className="text-purple-400 font-bold">₹{amount.toFixed(2)}</p>
           <p className="text-gray-400 text-sm">
             {count} expense{count === 1 ? "" : "s"}
           </p>
@@ -160,7 +160,7 @@ export default function YearlyCategoryChart({
           <YAxis
             stroke="#9ca3af"
             tick={{ fill: "#9ca3af" }}
-            tickFormatter={(value) => `$${value}`}
+            tickFormatter={(value) => `₹${value}`}
           />
 
           <Tooltip

@@ -47,7 +47,7 @@ export default function DeleteConfirmationModal({
             <div className="flex justify-between">
               <span className="text-gray-400">Amount:</span>
               <span className="text-gray-100 font-mono font-bold">
-                ${expense.amount.toFixed(2)}
+                ₹{expense.amount.toFixed(2)}
               </span>
             </div>
             <div className="flex justify-between">

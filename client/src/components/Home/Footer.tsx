@@ -1,11 +1,11 @@
-import { DollarSign } from "lucide-react";
+// import { DollarSign } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-slate-900 border-b border-slate-700 p-4 sm:px-8 sm:py-8 2xl:border-none 2xl:bg-transparent">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 2xl:py-8 2xl:border-t 2xl:border-purple-950">
         <div className="flex items-center gap-2">
-          <DollarSign className="size-6 text-purple-400" />
+          <span className="text-purple-400 text-2xl font-bold">₹</span>
           <span className="text-lg font-bold text-gray-100">SpendSmart</span>
         </div>
 

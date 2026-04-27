@@ -200,7 +200,7 @@ export default function DashboardPage() {
               icon={DollarSign}
               label="Total Expenses"
               // value={`$${dashboardStats.totalExpenses.toFixed(2)}`}
-              value={`$${(dashboardStats.totalExpenses ?? 0).toFixed(2)}`}
+              value={`₹${(dashboardStats.totalExpenses ?? 0).toFixed(2)}`}
             />
 
             <StatsCard
@@ -214,14 +214,14 @@ export default function DashboardPage() {
               icon={TrendingUp}
               label="Average Expense"
               // value={`$${dashboardStats.roundedAverageExpenseAmount.toFixed(2)}`}
-              value={`$${(dashboardStats.roundedAverageExpenseAmount ?? 0).toFixed(2)}`}
+              value={`₹${(dashboardStats.roundedAverageExpenseAmount ?? 0).toFixed(2)}`}
             />
 
             <StatsCard
               icon={Calendar}
               label="This Month"
               // value={`$${dashboardStats.currentMonthTotal.toFixed(2)}`}
-              value={`$${(dashboardStats.currentMonthTotal ?? 0).toFixed(2)}`}
+              value={`₹${(dashboardStats.currentMonthTotal ?? 0).toFixed(2)}`}
               onClick={handleMonthClick}
             />
           </>

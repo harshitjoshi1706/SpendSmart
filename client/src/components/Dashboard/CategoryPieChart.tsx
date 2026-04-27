@@ -39,7 +39,7 @@ const CustomToolTip = ({ active, payload }: CustomToolTipProps) => {
           {getCategoryConfig(data.category).emoji}{" "}
           {getCategoryConfig(data.category).label}
         </p>
-        <p className="text-purple-400 font-bold">${data.total.toFixed(2)}</p>
+        <p className="text-purple-400 font-bold">₹{data.total.toFixed(2)}</p>
         <p className="text-gray-400 text-sm">
           {data.percentage.toFixed(1)}% of total
         </p>
@@ -90,7 +90,7 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
             </div>
 
             <span className="text-gray-400">
-              ${categoryData.total.toFixed(2)} (
+              ₹{categoryData.total.toFixed(2)} (
               {categoryData.percentage.toFixed(1)}%)
             </span>
           </div>

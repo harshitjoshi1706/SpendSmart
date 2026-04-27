@@ -24,7 +24,7 @@ export default function ExpenseCard({
   };
 
   function formatAmount(amount: number) {
-    return `$${amount.toFixed(2)}`;
+    return `₹${amount.toFixed(2)}`;
   }
 
   return (

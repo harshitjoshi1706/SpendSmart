@@ -169,7 +169,7 @@ export default function AnalyticsPage() {
             icon={DollarSign}
             label="Total Analyzed"
             // value={`$${dashboardStats.totalExpenses.toFixed(2)}`}
-            value={`$${(dashboardStats.totalExpenses ?? 0).toFixed(2)}`}
+            value={`₹${(dashboardStats.totalExpenses ?? 0).toFixed(2)}`}
             subtext="All Time"
           />
         )}
@@ -178,7 +178,7 @@ export default function AnalyticsPage() {
           <SummaryCard
             icon={TrendingUp}
             label="Highest Month"
-            value={`$${highestMonth.amount.toFixed(2)}`}
+            value={`₹${highestMonth.amount.toFixed(2)}`}
             subtext={highestMonth.month}
           />
         )}
@@ -187,7 +187,7 @@ export default function AnalyticsPage() {
           <SummaryCard
             icon={TrendingDown}
             label="Lowest Month"
-            value={`$${lowestMonth.amount.toFixed(2)}`}
+            value={`₹${lowestMonth.amount.toFixed(2)}`}
             subtext={lowestMonth.month}
           />
         )}
@@ -196,7 +196,7 @@ export default function AnalyticsPage() {
           <SummaryCard
             icon={BarChart}
             label="Monthly Average"
-            value={`$${monthlyAverage.toFixed(2)}`}
+            value={`₹${monthlyAverage.toFixed(2)}`}
             subtext="Last Six Months"
           />
         )}
