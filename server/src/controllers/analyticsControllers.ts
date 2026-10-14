@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { asyncHandler, sendSuccess } from "../utils/responseHelpers";
 import { AppError } from "../middleware/errorHandler";
-import { DashboardStats, ExpenseCategory, MonthlyTotals } from "../types";
+import { DashboardStats, MonthlyTotals } from "../types";
 import Expense from "../models/Expense";
 import User from "../models/User";
 

@@ -1,4 +1,4 @@
-# Expense Tracker
+# SpendSmart Expense Tracker
 
 A secure full-stack personal finance management application built using the MERN stack.  
 Track expenses, analyze spending habits, and manage your finances with an interactive dashboard.
@@ -79,18 +79,17 @@ Track expenses, analyze spending habits, and manage your finances with an intera
 
 ## Project Structure
 
-```bash
-expense-tracker/
+```text
+SpendSmart/
 │
 ├── client/
 │   ├── src/
-│   ├── public/
-│   └── .env
+│   └── public/
 │
 ├── server/
-│   ├── src/
-│   └── .env
-│
+│   └── src/
+├── .github/workflows/ci.yml
+├── docker-compose.yml
 └── README.md
 ```
 
@@ -98,13 +97,15 @@ expense-tracker/
 
 ## Environment Variables
 
-### Client (.env)
+Copy the example files and replace placeholder values. Environment files are ignored by Git.
+
+### Client (`client/.env`)
 
 ```env
 VITE_API_BASE_URL=http://localhost:8000/api
 ```
 
-### Server (.env)
+### Server (`server/.env`)
 
 ```env
 PORT=8000
@@ -121,8 +122,8 @@ CLIENT_URL=http://localhost:5173
 ### Clone repository
 
 ```bash
-git clone your_repo_url
-cd expense-tracker
+git clone https://github.com/harshitjoshi1706/SpendSmart.git
+cd SpendSmart
 ```
 
 ### Install frontend
@@ -138,6 +139,8 @@ npm install
 cd ../server
 npm install
 ```
+
+For deterministic CI-style installs, use `npm ci` instead.
 
 ---
 
@@ -169,18 +172,63 @@ Backend:
 http://localhost:8000
 ```
 
----
+## Quality Checks
 
-## Deployment
+All commands are one-shot and do not start watch processes.
 
-### Frontend
-Deploy on :contentReference[oaicite:0]{index=0}
+```bash
+cd client
+npm run lint
+npm run build
 
-### Backend
-Deploy on :contentReference[oaicite:1]{index=1}
+cd ../server
+npm run lint
+npm test
+npm run build
+```
 
-### Database
-Use :contentReference[oaicite:2]{index=2} Atlas
+Backend tests use Vitest and Supertest. They cover JWT creation and failure behavior as unit tests, plus health, validation, authentication, and not-found behavior through the Express middleware stack. They do not connect to MongoDB or use production data.
+
+## Continuous Integration
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on pushes and pull requests targeting `main`, and can also be started manually. It contains three jobs:
+
+- Frontend: installs locked dependencies, lints, and creates the Vite production build.
+- Backend: installs locked dependencies, lints, runs one-shot tests, and compiles TypeScript.
+- Docker: after both code-check jobs pass, builds the frontend and backend images without publishing them.
+
+The workflow has read-only repository permissions and does not deploy to Azure or any other platform.
+
+## Docker Compose
+
+The production-oriented images use multi-stage builds. The frontend compiles to static files served by unprivileged Nginx, which also proxies `/api` and `/uploads` to the backend. The backend image contains compiled JavaScript and production dependencies only and runs as a non-root user. Compose adds MongoDB with a persistent named volume and health check, plus a separate persistent volume for uploaded avatars.
+
+Create a root Compose environment file and set a strong local secret:
+
+```bash
+cp .env.example .env
+```
+
+Replace the placeholder `JWT_SECRET`; do not commit `.env`. Then build and start the stack:
+
+```bash
+docker compose up --build
+```
+
+Open `http://localhost:3000`. The backend health endpoint is available at `http://localhost:8000/health`. To inspect status and logs:
+
+```bash
+docker compose ps
+docker compose logs --no-color server
+```
+
+Stop the stack without deleting data:
+
+```bash
+docker compose down
+```
+
+MongoDB is intentionally not published to the host; only the backend can reach it over the Compose network. To use a different MongoDB deployment outside Compose, set `MONGODBURI` in `server/.env` when running the backend directly.
 
 ---
 

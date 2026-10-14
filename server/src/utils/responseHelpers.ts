@@ -16,7 +16,13 @@ export const sendSuccess = <T>(
   res.status(statusCode).json(response);
 };
 
-export const asyncHandler = (fn: Function) => {
+type AsyncRequestHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => unknown | Promise<unknown>;
+
+export const asyncHandler = (fn: AsyncRequestHandler) => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
