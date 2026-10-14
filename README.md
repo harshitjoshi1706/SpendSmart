@@ -191,13 +191,34 @@ Backend tests use Vitest and Supertest. They cover JWT creation and failure beha
 
 ## Continuous Integration
 
-[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on pushes and pull requests targeting `main`, and can also be started manually. It contains three jobs:
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on pushes and pull requests targeting `main`, and can also be started manually. It contains four jobs:
 
 - Frontend: installs locked dependencies, lints, and creates the Vite production build.
 - Backend: installs locked dependencies, lints, runs one-shot tests, and compiles TypeScript.
 - Docker: after both code-check jobs pass, builds the frontend and backend images without publishing them.
+- Vercel production deployment: runs only for a push to `main`, after all three preceding jobs succeed. It pulls the existing Vercel production settings, creates a prebuilt production artifact, and deploys that artifact.
 
-The workflow has read-only repository permissions and does not deploy to Azure or any other platform.
+The workflow has read-only repository permissions. Pull requests and manual workflow runs perform validation only and cannot run the production deployment job. Concurrent runs for the same branch are canceled so an outdated commit does not deploy after a newer push.
+
+### Configure CI-gated Vercel deployment
+
+The deployment job uses Vercel's supported CLI workflow and requires these GitHub Actions repository secrets:
+
+- `VERCEL_TOKEN`: create an access token in **Vercel → Account Settings → Tokens**. Scope it to the account or team that owns the existing SpendSmart project.
+- `VERCEL_ORG_ID`: the owning Vercel account or team ID. It is available in the relevant Vercel team/account settings, or as `orgId` in `.vercel/project.json` after linking the existing project locally with `vercel link`.
+- `VERCEL_PROJECT_ID`: the existing SpendSmart Vercel project ID. It is available in **Project → Settings → General**, or as `projectId` in `.vercel/project.json` after linking locally.
+
+Add all three at **GitHub repository → Settings → Secrets and variables → Actions → New repository secret**. Never commit the token or IDs, and do not paste the token into workflow files or logs. The Vercel CLI runs from the repository root and honors the existing project's `client` Root Directory setting. `vercel pull --environment=production` supplies the existing Vercel project settings and production environment variables, including `VITE_API_BASE_URL`, without changing them.
+
+Vercel's connected Git integration otherwise creates its own deployment for every push. To avoid duplicate production deployments, perform this cutover in order:
+
+1. Add the three GitHub secrets above.
+2. Push this change to a non-production branch and open a pull request targeting `main`. Confirm that the frontend, backend, and Docker jobs pass and that the Vercel deployment job is skipped.
+3. Immediately before merging the verified pull request, open **Vercel project → Settings → Build and Deployment → Ignored Build Step** and change **Automatic** to **Don't build anything**. This keeps the Git repository connected but prevents its native push-triggered build from reaching production.
+4. Merge the pull request into `main`. Confirm that the frontend, backend, and Docker jobs pass before `Deploy frontend to Vercel` starts.
+5. Confirm in Vercel that exactly one new production deployment was created by the GitHub Actions run and that the production URL serves the expected commit.
+
+If the workflow deployment has not been configured and verified, leave the Ignored Build Step on **Automatic** and do not push this workflow. If the GitHub Actions deployment fails after cutover, the current production deployment stays live; restore **Automatic** temporarily only if native Git deployment behavior is needed again.
 
 ## Docker Compose
 
